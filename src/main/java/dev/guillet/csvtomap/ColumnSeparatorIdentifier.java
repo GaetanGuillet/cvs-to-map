@@ -10,17 +10,17 @@ import static java.util.Optional.ofNullable;
  * Find the csv column separator by checking if the first line contains either , or ; or tabs.
  * It is a simple but very perfectible way to achieve this goal. Be cautious using it
  */
-public class ColumnSeparatorIdentifier {
+class ColumnSeparatorIdentifier {
 
     private static final List<Character> separators = List.of(',', ';', '\t');
 
-    public static Character findColumnSeparator(byte[] bytes) throws IOException {
+    static Character findColumnSeparator(byte[] bytes) throws IOException {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(bytes)))) {
             return ofNullable(br.readLine()).flatMap(ColumnSeparatorIdentifier::findColumnSeparator).orElseThrow();
         }
     }
 
-    public static Character findColumnSeparator(File file) throws IOException {
+    static Character findColumnSeparator(File file) throws IOException {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
             return ofNullable(br.readLine()).flatMap(ColumnSeparatorIdentifier::findColumnSeparator).orElseThrow();
         }

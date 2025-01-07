@@ -16,7 +16,7 @@ class ColumnSeparatorIdentifierTest {
             "data_with_comma.csv, ','",
             "data_with_semicolon.csv, ';'"
     })
-    public void shouldFindColumnSeparator(String fileName, Character expectedColumnSeparator) throws IOException {
+    void shouldFindColumnSeparator(String fileName, Character expectedColumnSeparator) throws IOException {
         var input = new File("src/test/resources/" + fileName);
         var columnSeparator = findColumnSeparator(input);
         assertEquals(expectedColumnSeparator, columnSeparator);
